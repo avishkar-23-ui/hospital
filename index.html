@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Avishkar Sawant — Premium personal portfolio showcasing frontend development, UI/UX, motion, and modern web projects.">
+  <meta name="theme-color" content="#09090b">
+  <title>Avishkar Sawant | Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #09090b;
+      --bg-soft: #111114;
+      --card: rgba(255,255,255,.055);
+      --card-hover: rgba(255,255,255,.09);
+      --text: #f5f5f5;
+      --muted: #a1a1aa;
+      --line: rgba(255,255,255,.11);
+      --accent: #8b5cf6;
+      --accent-2: #06b6d4;
+      --max: 1180px;
+      --radius: 24px;
+      --shadow: 0 25px 80px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(139,92,246,.15), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(6,182,212,.10), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: .3s ease;
+    }
+
+    header.scrolled {
+      background: rgba(9,9,11,.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #d4d4d8;
+      font-size: .92rem;
+      transition: .25s;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px 11px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: 140px 0 90px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: #d4d4d8;
+      font-size: .8rem;
+      margin-bottom: 22px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 14px #22c55e;
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: -.075em;
+      max-width: 800px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(110deg, #fff, #a78bfa 48%, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      margin-top: 28px;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      transition: .25s ease;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #09090b;
+      border-color: white;
+    }
+
+    .btn-primary:hover { transform: translateY(-3px); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.09);
+      transform: translateY(-3px);
+    }
+
+    /* HERO VISUAL */
+    .visual {
+      min-height: 500px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      perspective: 1000px;
+    }
+
+    .orb {
+      width: min(390px, 75vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      position: relative;
+      background:
+        radial-gradient(circle at 32% 25%, rgba(255,255,255,.95), transparent 3%),
+        radial-gradient(circle at 35% 30%, #8b5cf6 0 14%, transparent 36%),
+        radial-gradient(circle at 65% 65%, #06b6d4 0 12%, transparent 34%),
+        radial-gradient(circle, #18181b 15%, #0b0b0e 72%);
+      box-shadow:
+        0 0 70px rgba(139,92,246,.22),
+        0 0 130px rgba(6,182,212,.12),
+        inset -30px -30px 80px rgba(0,0,0,.75);
+      transform-style: preserve-3d;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .orb::before,
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: -35px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      transform: rotateX(65deg) rotateZ(18deg);
+    }
+
+    .orb::after {
+      inset: -70px;
+      transform: rotateY(68deg) rotateZ(-18deg);
+      border-color: rgba(139,92,246,.25);
+    }
+
+    .orb-label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .orb-label strong {
+      display: block;
+      font-size: 3.5rem;
+      letter-spacing: -.08em;
+    }
+
+    .orb-label span {
+      color: #a1a1aa;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotateX(0) rotateY(0); }
+      50% { transform: translateY(-18px) rotateX(4deg) rotateY(-7deg); }
+    }
+
+    /* SECTIONS */
+    section { padding: 105px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .section-heading p {
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card p { color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 17px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+    }
+
+    .stat strong {
+      font-size: 1.8rem;
+      display: block;
+    }
+
+    .stat span { color: var(--muted); font-size: .85rem; }
+
+    /* SKILLS */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      min-height: 220px;
+      transition: transform .3s ease, background .3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      background: var(--card-hover);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.05);
+      margin-bottom: 24px;
+      font-size: 1.35rem;
+    }
+
+    .skill-card h3 { margin-bottom: 8px; }
+    .skill-card p { color: var(--muted); font-size: .92rem; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      font-size: .75rem;
+      color: #d4d4d8;
+      border: 1px solid var(--line);
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.035);
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+    }
+
+    .project {
+      min-height: 370px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      isolation: isolate;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(139,92,246,.35), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 60%);
+      z-index: -1;
+      transition: transform .5s ease;
+    }
+
+    .project:hover::before { transform: scale(1.12); }
+
+    .project-number {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      color: #71717a;
+      font-size: .8rem;
+    }
+
+    .project-content h3 {
+      font-size: 1.7rem;
+      letter-spacing: -.04em;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      margin: 7px 0 18px;
+      max-width: 600px;
+    }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+      padding-bottom: 70px;
+    }
+
+    .contact-box {
+      max-width: 900px;
+      margin: auto;
+      padding: clamp(35px, 7vw, 75px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(139,92,246,.18);
+      filter: blur(70px);
+      left: -100px;
+      top: -120px;
+      border-radius: 50%;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2.3rem, 6vw, 5rem);
+      letter-spacing: -.07em;
+      line-height: .95;
+      position: relative;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 570px;
+      margin: 20px auto 30px;
+      position: relative;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: #71717a;
+      font-size: .85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid { grid-template-columns: 1fr; }
+
+      .hero { padding-top: 130px; }
+      .visual { min-height: 390px; }
+
+      .skill-grid { grid-template-columns: repeat(2,1fr); }
+      .projects { grid-template-columns: 1fr; }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 14px;
+        right: 14px;
+        padding: 18px;
+        flex-direction: column;
+        background: rgba(17,17,20,.97);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+      }
+
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+
+      .skill-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+
+      h1 { font-size: clamp(3.2rem, 18vw, 5.5rem); }
+      .visual { min-height: 330px; }
+      .orb { width: 270px; }
+
+      section { padding: 80px 0; }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header id="header">
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">AVISHKAR<span>.</span></a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">
+            <span class="dot"></span>
+            Available for opportunities
+          </div>
+
+          <h1>
+            Building
+            <span class="gradient-text">digital experiences.</span>
+          </h1>
+
+          <p class="hero-copy">
+            Hi, I'm Avishkar — a developer focused on modern frontend development,
+            responsive interfaces, visual design, smooth interactions and memorable
+            digital experiences.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects ↗</a>
+            <a class="btn btn-secondary" href="#contact">Let's Connect</a>
+          </div>
+        </div>
+
+        <div class="visual reveal" id="visual">
+          <div class="orb">
+            <div class="orb-label">
+              <strong>AS</strong>
+              <span>Developer / Designer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>About me.</h2>
+          <p>
+            A portfolio built around clean design, responsive development,
+            thoughtful interaction and performance.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card about-card reveal">
+            <h3>Design meets development.</h3>
+            <p>
+              I enjoy turning ideas into polished web experiences. My approach
+              combines visual hierarchy, responsive layouts, modern frontend
+              engineering and interactive details.
+            </p>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>01</strong>
+                <span>Creative approach</span>
+              </div>
+              <div class="stat">
+                <strong>02</strong>
+                <span>Responsive first</span>
+              </div>
+              <div class="stat">
+                <strong>03</strong>
+                <span>Performance focused</span>
+              </div>
+              <div class="stat">
+                <strong>04</strong>
+                <span>User focused</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card about-card reveal">
+            <h3>My approach</h3>
+            <p>
+              From interface planning and design systems to implementation and
+              delivery, I focus on creating experiences that feel consistent
+              across desktop, tablet and mobile.
+            </p>
+            <br>
+            <p>
+              I also explore motion, scroll-driven interactions, depth,
+              perspective and immersive visual presentation to give projects
+              a stronger digital identity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>Tech stack.</h2>
+          <p>
+            Technologies and approaches used to build modern, responsive and
+            visually polished portfolio experiences.
+          </p>
+        </div>
+
+        <div class="skill-grid">
+
+          <article class="card skill-card reveal">
+            <div class="icon">⌘</div>
+            <h3>Frontend Development</h3>
+            <p>
+              Component-based interfaces, application logic, semantic HTML and
+              responsive visual styling.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Tailwind CSS</span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="icon">✦</div>
+            <h3>Motion & Interaction</h3>
+            <p>
+              Smooth transitions, scroll-driven animation and subtle
+              micro-interactions.
+            </p>
+            <div class="tags">
+              <span class="tag">GSAP</span>
+              <span class="tag">Scroll Motion</span>
+              <span class="tag">Transitions</span>
+              <span class="tag">Micro-interactions</span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="icon">◈</div>
+            <h3>3D & Immersive Design</h3>
+            <p>
+              Layered compositions, perspective and immersive hero visuals
+              designed for strong first impressions.
+            </p>
+            <div class="tags">
+              <span class="tag">3D Visuals</span>
+              <span class="tag">360° Presentation</span>
+              <span class="tag">Depth</span>
+              <span class="tag">Perspective</span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="icon">◇</div>
+            <h3>UI / UX Design</h3>
+            <p>
+              Interface planning, visual systems, prototypes and responsive
+              design.
+            </p>
+            <div class="tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Design Systems</span>
+              <span class="tag">Responsive UX</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="icon">↯</div>
+            <h3>Performance</h3>
+            <p>
+              Modern responsive architecture and optimized visual assets for
+              fast rendering and smooth interaction.
+            </p>
+            <div class="tags">
+              <span class="tag">Optimization</span>
+              <span class="tag">Fast Rendering</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="icon">✓</div>
+            <h3>Production Workflow</h3>
+            <p>
+              Structured development practices focused on maintainability and
+              production-ready portfolio projects.
+            </p>
+            <div class="tags">
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Clean Code</span>
+              <span class="tag">Deployment</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2>Selected work.</h2>
+          <p>
+            Replace these demo cards with your real GitHub repositories,
+            college projects and case studies.
+          </p>
+        </div>
+
+        <div class="projects">
+
+          <article class="card project reveal">
+            <span class="project-number">01</span>
+            <div class="project-content">
+              <h3>Hospital Management System</h3>
+              <p>
+                A responsive web interface for hospital management planning,
+                requirements and digital workflow presentation.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project reveal">
+            <span class="project-number">02</span>
+            <div class="project-content">
+              <h3>Creative Portfolio</h3>
+              <p>
+                A premium personal portfolio focused on visual design,
+                responsive UX, animation and modern frontend development.
+              </p>
+              <div class="tags">
+                <span class="tag">Frontend</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Motion</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project reveal">
+            <span class="project-number">03</span>
+            <div class="project-content">
+              <h3>Java Programs</h3>
+              <p>
+                A collection of Java practice programs covering branching,
+                looping, inheritance, abstraction and polymorphism.
+              </p>
+              <div class="tags">
+                <span class="tag">Java</span>
+                <span class="tag">OOP</span>
+                <span class="tag">Practice</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project reveal">
+            <span class="project-number">04</span>
+            <div class="project-content">
+              <h3>DSA Practice</h3>
+              <p>
+                Data structures and algorithms practice covering stacks,
+                queues, linked lists, trees, sorting and searching.
+              </p>
+              <div class="tags">
+                <span class="tag">DSA</span>
+                <span class="tag">C/C++</span>
+                <span class="tag">Algorithms</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="card contact-box reveal">
+          <h2>Let's build something great.</h2>
+          <p>
+            Interested in working together, discussing a project, or simply
+            connecting? Find me on GitHub or send me an email.
+          </p>
+
+          <div class="hero-actions" style="justify-content:center;">
+            <!-- Replace these links with your real profiles -->
+            <a class="btn btn-primary"
+               href="https://github.com/"
+               target="_blank"
+               rel="noopener noreferrer">
+              GitHub ↗
+            </a>
+
+            <a class="btn btn-secondary"
+               href="mailto:your.email@example.com">
+              Email me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Avishkar Sawant. All rights reserved.</span>
+      <span>Designed & built with HTML, CSS & JavaScript.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      menuBtn.textContent = navLinks.classList.contains("open") ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    // Navbar background on scroll
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 30);
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Interactive 3D-like hero orb
+    const visual = document.getElementById("visual");
+    const orb = document.querySelector(".orb");
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      visual.addEventListener("mousemove", e => {
+        const rect = visual.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        orb.style.animationPlayState = "paused";
+        orb.style.transform =
+          `translateY(-4px) rotateX(${y * -14}deg) rotateY(${x * 18}deg)`;
+      });
+
+      visual.addEventListener("mouseleave", () => {
+        orb.style.animationPlayState = "running";
+        orb.style.transform = "";
+      });
+    }
+
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
